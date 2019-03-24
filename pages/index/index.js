@@ -11,9 +11,6 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   onLoad: function () {
     
@@ -45,7 +42,6 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -53,19 +49,22 @@ Page({
     })
   },
   add:function(){
-    wx.request({
-      url: 'http://jc.zhangli.me/api/topic/add', // 仅为示例，并非真实的接口地址
-      method:'POST',
-      header: {
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      data:{
-        type:'easy',
-        question:'123'
-      },
-      success(res) {
-        console.log(res)
-      }
-    })
+    wx.redirectTo({
+      url: '../time/time'
+    });
+    // wx.request({
+    //   url: 'http://jc.zhangli.me/api/topic/add', // 仅为示例，并非真实的接口地址
+    //   method:'POST',
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded'
+    //   },
+    //   data:{
+    //     type:'easy',
+    //     question:'123'
+    //   },
+    //   success(res) {
+    //     console.log(res)
+    //   }
+    // })
   }
 })

@@ -29,13 +29,36 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "answer",
+					"pathName": "pages/answer/answer",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "time",
+					"pathName": "pages/time/time",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "choice",
+					"pathName": "pages/choice/choice",
+					"query": ""
+				}
+			]
 		}
 	}
 }

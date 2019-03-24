@@ -1,0 +1,5 @@
+<!--pages/choice/choice.wxml-->
+
+<wux-dialog id="wux-dialog" />
+<wux-toast id="wux-toast" />
+<wux-button block bindtap="startFn" disabled="{{isConfirm}}" loading="{{isConfirm}}" type="balanced">确定</wux-button>

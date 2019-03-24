@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+  	"wux-sticky": "../../components/sticky/index",
+    "wux-sticky-item": "../../components/sticky-item/index",
+    "wux-tag": "../../components/tag/index",
+    "wux-toast": "../../components/toast/index",
+    "wux-button": "../../components/button/index",
+    "wux-dialog": "../../components/dialog/index"
+  }
+}
