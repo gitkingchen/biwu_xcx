@@ -1,6 +1,7 @@
 // pages/answer/answer.js
 
-import { $wuxDialog,$wuxToast } from '../../components/index';
+import { $wuxDialog,$wuxToast,$wuxLoading } from '../../components/index';
+const app = getApp();
 Page({
 
   /**
@@ -8,37 +9,19 @@ Page({
    */
   data: {
      scrollTop: 0,
-     topics:[
-      {
-        type:'简单（每题10分）',
-        list:[
-          'node',
-          'es5'
-        ]
-      },
-      {
-        type:'中等（每题20分）',
-        list:[
-          'ajax',
-          'es6'
-        ]
-      },
-      {
-        type:'困难（每题30分）',
-        list:[
-          'reg',
-          '算法'
-        ]
-      }
-     ]
+     isHiddenFinish:true,
+     topics:[],
+     easyCount:'',
+     mediumCount:'',
+     hardCount:'',
   },
   onPageScroll(e){
-      console.log('onPageScroll', e.scrollTop)
       this.setData({
           scrollTop: e.scrollTop,
       })
   },
   finishFn(){
+    var self = this;
     $wuxDialog().confirm({
         resetOnClose: true,
         closable: false,
@@ -48,29 +31,42 @@ Page({
         confirmText:'是',
         cancelText:'否',
         onConfirm(e) {
-          // setArrived({
-          //   order_id:row.target.dataset.item.wash_order_id
-          // })
-          // .then(data =>{
-          //   if(data.error_code == '0000'){
-              $wuxToast().show({
-                  type: 'success',
-                  duration: 5000,
-                  color: '#fff',
-                  text: '获取最新答完题的状态（比如请稍微休息一下哦~，还有一人未答完/您是最后提交的，请继续努力哦~）',
-                  success: () => {}
-              });
-            // }else{
-            //   $wuxToast().show({
-            //       type: 'error',
-            //       duration: 2000,
-            //       color: '#fff',
-            //       text: data.error_msg,
-            //       success: () => {}
-            //   });
-            // }
-            
-          //})     
+
+          wx.request({
+            url: 'http://jc.zhangli.me/api/topic/finish',
+            method:'POST',
+            header: {
+              'content-type': 'application/x-www-form-urlencoded'
+            },
+            data:{
+              avatarUrl:app.globalData.userInfo.avatarUrl,
+              nickName:app.globalData.userInfo.nickName,
+              easyCount:self.data.easyCount,
+              mediumCount:self.data.mediumCount,
+              hardCount:self.data.hardCount,
+            },
+            success(res) {
+              
+                if(res.data.errno == 0){
+                    $wuxToast().show({
+                        type: 'success',
+                        duration: 5000,
+                        color: '#fff',
+                        text: '请稍微休息一下哦~，还有一人未答完~',
+                        success: () => {}
+                    });
+                }else{
+                    $wuxToast().show({
+                        type: 'error',
+                        duration: 2000,
+                        color: '#fff',
+                        text: '网络错误',
+                        success: () => {}
+                    });
+                }
+             
+            }
+          })
         },
         onCancel(e) {},
     });
@@ -81,14 +77,54 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.easyCount = options.easy;
+    this.data.mediumCount = options.medium;
+    this.data.hardCount = options.hard;
+    var self = this;
+    this.$wuxLoading = $wuxLoading();
+    this.$wuxLoading.show({
+        text: '数据加载中',
+    });
+    
+    wx.request({
+      url: 'http://jc.zhangli.me/api/topic/choice',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data:{
+        easyCount:self.data.easyCount,
+        mediumCount:self.data.mediumCount,
+        hardCount:self.data.hardCount
+      },
+      success(res) {
+        setTimeout(function(){
+          self.$wuxLoading.hide();
+        
+          if(res.data.errno == 0){
+            self.setData({
+              isHiddenFinish:false,
+              topics:res.data.data
+            })
+          }else{
+              $wuxToast().show({
+                  type: 'error',
+                  duration: 2000,
+                  color: '#fff',
+                  text: '网络错误',
+                  success: () => {}
+              });
+          }
+        },1000);
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //console.log('ready')
+    
   },
 
   /**

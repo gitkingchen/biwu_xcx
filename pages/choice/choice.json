@@ -1,7 +1,11 @@
 {
   "usingComponents": {
+  	"wux-avatar": "../../components/avatar/index",
   	"wux-button": "../../components/button/index",
   	"wux-toast": "../../components/toast/index",
-    "wux-dialog": "../../components/dialog/index"
+    "wux-dialog": "../../components/dialog/index",
+    "wux-cell-group": "../../components/cell-group/index",
+    "wux-cell": "../../components/cell/index",
+    "wux-input-number": "../../components/input-number/index"
   }
 }

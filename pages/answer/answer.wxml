@@ -1,19 +1,18 @@
  <view class="page__bd">
+    <wux-loading id="wux-loading" />
     <wux-dialog id="wux-dialog" />
     <wux-toast id="wux-toast" />
     <wux-sticky scrollTop="{{ scrollTop }}">
         <wux-sticky-item wx:for="{{topics}}" wx:for-index="i" wx:for-item="itemI" wx:key="type">
-            
-          
             <view slot="title">{{itemI.type}}</view>
             <view slot="content">
                 <view wx:for="{{itemI.list}}" wx:key="this" wx:for-index="j" wx:for-item="itemJ" class="demo-item">
-                {{j+1}},{{itemJ}}
+                {{j+1}},{{itemJ.question}}
                 </view>
-
             </view>
-
         </wux-sticky-item>
     </wux-sticky>
-    <wux-button block type="assertive" bindtap="finishFn">点我，告诉我已答完哈^_^</wux-button>
+    <view hidden="{{isHiddenFinish}}">
+        <wux-button block type="assertive" bindtap="finishFn">点我，告诉我已答完哈^_^</wux-button>
+    </view>
 </view>

@@ -2,4 +2,22 @@
 
 <wux-dialog id="wux-dialog" />
 <wux-toast id="wux-toast" />
-<wux-button block bindtap="startFn" disabled="{{isConfirm}}" loading="{{isConfirm}}" type="balanced">确定</wux-button>
+
+<view class="page__bd">
+	<view>答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
+	<!-- app.globalData.userInfo.avatarUrl -->
+<!-- <wux-cell-group title="比武大赛">
+	<wux-cell wx:for="{{items}}" wx:key="this" title="{{item.title}}" hover-class="none">
+	    <wux-input-number data-type="{{item.type}}" data-index="{{index}}" bindchange="changeFn" min="0" max="{{item.maxNum}}" disabled="false" shape="circle" color="assertive" slot="footer" />
+	</wux-cell>
+</wux-cell-group> -->
+	<view wx:for="{{items}}" wx:key="this">
+		{{item.title}}
+		<view bindtap="minus" data-num="{{item.num}}" data-index="{{index}}">-</view>
+		<view>{{item.num}}</view>
+		<view bindtap="plus"  data-num="{{item.num}}" data-index="{{index}}">+</view>
+	</view>
+	<view>当前总分为：{{total}}分</view>
+</view>
+
+<wux-button block bindtap="startFn" type="balanced">确定</wux-button>
