@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+  	"wux-avatar": "../../components/avatar/index",
   	"wux-sticky": "../../components/sticky/index",
     "wux-sticky-item": "../../components/sticky-item/index",
     "wux-tag": "../../components/tag/index",

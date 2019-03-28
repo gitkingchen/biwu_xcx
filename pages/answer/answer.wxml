@@ -2,6 +2,7 @@
     <wux-loading id="wux-loading" />
     <wux-dialog id="wux-dialog" />
     <wux-toast id="wux-toast" />
+    <view>答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
     <wux-sticky scrollTop="{{ scrollTop }}">
         <wux-sticky-item wx:for="{{topics}}" wx:for-index="i" wx:for-item="itemI" wx:key="type">
             <view slot="title">{{itemI.type}}</view>

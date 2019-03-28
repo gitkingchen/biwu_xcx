@@ -114,10 +114,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.userInfo)
+    if(!app.globalData.userInfo){
+        wx.redirectTo({
+          url: '../index/index'
+        });
+    }else{
       this.setData({
         myAvatar:app.globalData.userInfo.avatarUrl,
         myName:app.globalData.userInfo.nickName
       });
+    }
+      
   },
 
   /**

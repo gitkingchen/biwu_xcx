@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+     myAvatar:'',
      scrollTop: 0,
      isHiddenFinish:true,
      topics:[],
@@ -34,6 +35,7 @@ Page({
 
           wx.request({
             url: 'http://jc.zhangli.me/api/topic/finish',
+            //url: 'http://127.0.0.1:8181/api/topic/finish',
             method:'POST',
             header: {
               'content-type': 'application/x-www-form-urlencoded'
@@ -52,7 +54,7 @@ Page({
                         type: 'success',
                         duration: 5000,
                         color: '#fff',
-                        text: '请稍微休息一下哦~，还有一人未答完~',
+                        text: '已提交，请休息一下~',
                         success: () => {}
                     });
                 }else{
@@ -60,7 +62,7 @@ Page({
                         type: 'error',
                         duration: 2000,
                         color: '#fff',
-                        text: '网络错误',
+                        text: res.data.errmsg,
                         success: () => {}
                     });
                 }
@@ -77,6 +79,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(app.globalData.userInfo)
+    if(!app.globalData.userInfo){
+        wx.redirectTo({
+          url: '../index/index'
+        });
+    }else{
+      this.setData({
+        myAvatar:app.globalData.userInfo.avatarUrl
+      });
+    }
+
     this.data.easyCount = options.easy;
     this.data.mediumCount = options.medium;
     this.data.hardCount = options.hard;
@@ -85,9 +98,9 @@ Page({
     this.$wuxLoading.show({
         text: '数据加载中',
     });
-    
     wx.request({
       url: 'http://jc.zhangli.me/api/topic/choice',
+      //url: 'http://127.0.0.1:8181/api/topic/choice',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },

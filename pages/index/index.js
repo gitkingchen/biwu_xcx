@@ -13,7 +13,6 @@ Page({
   bindViewTap: function() {
   },
   onLoad: function () {
-    
     if (app.globalData.userInfo) {
 
       wx.redirectTo({
@@ -37,18 +36,21 @@ Page({
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          wx.redirectTo({
-            url: '../choice/choice'
-          });
-          // this.setData({
-          //   userInfo: res.userInfo,
-          //   hasUserInfo: true
-          // })
-        }
-      })
+      // wx.getUserInfo({
+      //   success: res => {
+      //     app.globalData.userInfo = res.userInfo
+      //     wx.redirectTo({
+      //       url: '../choice/choice'
+      //     });
+      //     // this.setData({
+      //     //   userInfo: res.userInfo,
+      //     //   hasUserInfo: true
+      //     // })
+      //   }
+      // })
+      // wx.redirectTo({
+      //   url: '../index/index'
+      // });
     }
   },
   getUserInfo: function(e) {
