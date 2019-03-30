@@ -4,20 +4,29 @@
 <wux-toast id="wux-toast" />
 
 <view class="page__bd">
-	<view>答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
+	<view style="padding:20rpx 0 0 30rpx;">答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
 	<!-- app.globalData.userInfo.avatarUrl -->
 <!-- <wux-cell-group title="比武大赛">
 	<wux-cell wx:for="{{items}}" wx:key="this" title="{{item.title}}" hover-class="none">
-	    <wux-input-number data-type="{{item.type}}" data-index="{{index}}" bindchange="changeFn" min="0" max="{{item.maxNum}}" disabled="false" shape="circle" color="assertive" slot="footer" />
+	    <wux-input-number data-type="{{item.type}}" data-index="{{index}}" bindchange="changeFn" min="0" disabled="false" shape="circle" color="assertive" slot="footer" />
 	</wux-cell>
 </wux-cell-group> -->
-	<view wx:for="{{items}}" wx:key="this">
-		{{item.title}}
-		<view bindtap="minus" data-num="{{item.num}}" data-index="{{index}}">-</view>
-		<view>{{item.num}}</view>
-		<view bindtap="plus"  data-num="{{item.num}}" data-index="{{index}}">+</view>
+
+	<view>
+		<view class="title">比武大赛</view>
+		<view class="content">
+			<view class="wrap" wx:for="{{items}}" wx:key="this">
+				<view style="width:40%;text-align:left;">{{item.title}}</view>
+				<view style="width:60%;text-align:right;">
+					<view class="operate-btn" bindtap="minus" data-num="{{item.num}}" data-index="{{index}}">-</view>
+					<view style="margin:0 20rpx;">{{item.num}}</view>
+					<view class="operate-btn" bindtap="plus"  data-num="{{item.num}}" data-index="{{index}}">+</view>
+				</view>
+			</view>
+		</view>
 	</view>
-	<view>当前总分为：{{total}}分</view>
+	
+	<view style="margin:20rpx 0 0 30rpx;font-weight:bold;">当前总分为：{{total}}分</view>
 </view>
 
 <wux-button block bindtap="startFn" type="balanced">确定</wux-button>

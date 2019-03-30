@@ -6,7 +6,7 @@
     "wux-tag": "../../components/tag/index",
     "wux-toast": "../../components/toast/index",
     "wux-button": "../../components/button/index",
-	"wux-loading": "../../components/loading/index",
+	  "wux-loading": "../../components/loading/index",
     "wux-dialog": "../../components/dialog/index"
   }
 }

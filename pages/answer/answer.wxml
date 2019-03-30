@@ -2,17 +2,20 @@
     <wux-loading id="wux-loading" />
     <wux-dialog id="wux-dialog" />
     <wux-toast id="wux-toast" />
-    <view>答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
+    <view style="padding:20rpx 0 20rpx 30rpx;">答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
     <wux-sticky scrollTop="{{ scrollTop }}">
         <wux-sticky-item wx:for="{{topics}}" wx:for-index="i" wx:for-item="itemI" wx:key="type">
-            <view slot="title">{{itemI.type}}</view>
+            <view slot="title" style="font-weight:bold;">{{itemI.type}}</view>
             <view slot="content">
-                <view wx:for="{{itemI.list}}" wx:key="this" wx:for-index="j" wx:for-item="itemJ" class="demo-item">
-                {{j+1}},{{itemJ.question}}
+                <view style="font-size:32rpx;" wx:for="{{itemI.list}}" wx:key="this" wx:for-index="j" wx:for-item="itemJ" class="demo-item">
+                    <view>{{j+1}},{{itemJ.question}}</view>
+                    <view style="color:#FF4848;font-size:28rpx;" wx:if="{{itemJ.des}}">（PS：{{itemJ.des}}）</view>
+                    <wux-tag wx:if="{{itemJ.img}}" style="" bindtap="previewImage" data-src="{{itemJ.img}}" color="geekblue">查看演示</wux-tag>
                 </view>
             </view>
         </wux-sticky-item>
     </wux-sticky>
+    
     <view hidden="{{isHiddenFinish}}">
         <wux-button block type="assertive" bindtap="finishFn">点我，告诉我已答完哈^_^</wux-button>
     </view>

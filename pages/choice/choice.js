@@ -19,14 +19,14 @@ Page({
         'type':'easy'
       },
       {
-        'title':'中等（每题20分）',
-        'score':20,
+        'title':'中等（每题15分）',
+        'score':15,
         'num':0,
         'type':'medium'
       },
       {
-        'title':'困难（每题30分）',
-        'score':30,
+        'title':'困难（每题20分）',
+        'score':20,
         'num':0,
         'type':'hard'
       }

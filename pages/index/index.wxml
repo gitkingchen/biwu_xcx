@@ -1,12 +1,14 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">开始比赛</button>
+  
+    <image style="position:absolute;left:0;width:100%;top:0;height:100%;" src="/images/pk.jpg" mode="aspectFill"></image>
+    <wux-button style="position:absolute;top:55%;left:50%;transform:translateX(-50%);" open-type="getUserInfo" bindgetuserinfo="getUserInfo" type="calm">开始比赛</wux-button>
+    
     <!-- <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block> -->
-  </view>
+  
   <!-- <view bindtap="add">点我</view> -->
   <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
