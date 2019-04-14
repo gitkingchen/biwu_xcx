@@ -4,7 +4,10 @@
 <wux-toast id="wux-toast" />
 
 <view class="page__bd">
-	<view style="padding:20rpx 0 0 30rpx;">答题者：<wux-avatar size="large" src="{{myAvatar}}" /></view>
+	<view style="padding:20rpx 0 0 30rpx;">答题者：
+		<!-- <wux-avatar size="large" src="" /> -->
+		<image mode="aspectFit" style="width:100rpx;height:100rpx;border-radius:50%;vertical-align:middle;" src="{{myAvatar}}"></image>
+	</view>
 	<!-- app.globalData.userInfo.avatarUrl -->
 <!-- <wux-cell-group title="比武大赛">
 	<wux-cell wx:for="{{items}}" wx:key="this" title="{{item.title}}" hover-class="none">
